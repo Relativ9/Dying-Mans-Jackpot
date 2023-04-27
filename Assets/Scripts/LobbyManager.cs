@@ -41,10 +41,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("Connected and in a room now!");
 
         GameObject camSys = PhotonNetwork.Instantiate(CameraSystem.name, spawnPoint.position, Quaternion.identity);
+        int camSysID = camSys.GetInstanceID();
+
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
 
+        //camSys.GetComponent<PlayerSetup>().IsLocalCamera();
         _player.GetComponent<PlayerSetup>().IsLocalPlayer();
-
     }
 }
 

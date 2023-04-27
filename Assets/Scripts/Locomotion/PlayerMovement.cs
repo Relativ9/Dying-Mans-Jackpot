@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     //private GrappleHook grapHook;
     //private VolumeTrigger volTrig;
     //private BreathingCheck breathCheck;
+    private PlayerSetup playerSetup;
     private WallRun wallRun;
     private Climbing climb;
     private CapsuleCollider playerCol;
@@ -94,15 +95,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        playerSetup = this.GetComponent<PlayerSetup>();
         playerRb = this.GetComponent<Rigidbody>();
         //grapHook = FindAnyObjectByType<GrappleHook>();
         //volTrig = FindAnyObjectByType<VolumeTrigger>();
-        wallRun = FindAnyObjectByType<WallRun>();
-        climb = FindAnyObjectByType<Climbing>();
+        wallRun = this.GetComponent<WallRun>();
+        climb = this.GetComponent<Climbing>();
         playerCol = this.GetComponent<CapsuleCollider>();
         //breathCheck = FindAnyObjectByType<BreathingCheck>();
         //anim = FindAnyObjectByType<AnimatorStates>().GetComponent<Animator>();
-        fpsCam = Camera.main;
+        fpsCam = playerSetup.cameraHolder.GetComponentInChildren<Camera>();
 
         this.gameObject.GetComponent<Collider>().material.staticFriction = 100f;
 

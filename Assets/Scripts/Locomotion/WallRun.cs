@@ -45,15 +45,17 @@ public class WallRun : MonoBehaviour
     private Rigidbody playerRigidbody;
     private PlayerMovement playerMovement;
     private Climbing climbing;
+    private PlayerSetup playerSetup;
     //private bool hasPressedWallJump; //might use for animation state machine integration
 
     void Start()
     {
+        playerSetup = this.GetComponent<PlayerSetup>();
         playerRigidbody = GetComponent<Rigidbody>();
         currentCamAng = defaultCamAng;
         playerMovement = GetComponent<PlayerMovement>();
         climbing = GetComponent<Climbing>();
-        fpCamTrans = Camera.main.transform;
+        fpCamTrans = playerSetup.cameraHolder.GetComponentInChildren<Camera>().transform;
     }
 
     void Update()

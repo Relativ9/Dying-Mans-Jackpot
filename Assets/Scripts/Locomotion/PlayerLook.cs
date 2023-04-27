@@ -25,19 +25,25 @@ public class PlayerLook : MonoBehaviour
     private float ClampedyRotation;
     private float ClampedxRotation;
     //private PlayerHealth playHealth;
+
+    //assigned at start
+    private PlayerSetup playerSetup;
     private Climbing climbing;
     private WallRun wallrun;
 
 
     void Start()
     {
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        playerSetup = this.GetComponent<PlayerSetup>();
         //playHealth = FindAnyObjectByType<PlayerHealth>();
-        climbing = FindAnyObjectByType<Climbing>();
-        wallrun = FindAnyObjectByType<WallRun>();
-        fpCamTrans = Camera.main.transform;
-        camParent = fpCamTrans.parent;
+        climbing = this.GetComponent<Climbing>();
+        wallrun = this.GetComponent<WallRun>();
+
+        fpCamTrans = playerSetup.cameraHolder.GetComponentInChildren<Camera>().transform;
+        camParent = playerSetup.cameraHolder.transform;
     }
 
     void Update()
