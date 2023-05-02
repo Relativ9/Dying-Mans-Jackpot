@@ -9,12 +9,20 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public GameObject player;
     public GameObject CameraSystem;
     public Transform spawnPoint;
+    public PlayerSetup playerSetup;
+    public WallRun wallrun;
+    public PlayerMovement playerMovement;
+    public PlayerLook playerLook;
+
+    public GameObject camSys;
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Connecting....");
 
         PhotonNetwork.ConnectUsingSettings();
+        
     }
 
 
@@ -40,12 +48,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         base.OnJoinedRoom();
         Debug.Log("Connected and in a room now!");
 
-        GameObject camSys = PhotonNetwork.Instantiate(CameraSystem.name, spawnPoint.position, Quaternion.identity);
-        int camSysID = camSys.GetInstanceID();
-
+        camSys = PhotonNetwork.Instantiate(CameraSystem.name, spawnPoint.position, Quaternion.identity);
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
+        playerSetup.fpCam = camSys.GetComponentInChildren<Camera>().gameObject;
+        //playerMovement.fpCam = camSys.GetComponentInChildren<Camera>().transform;
+        //playerLook.fpCamTrans = camSys.GetComponentInChildren<Camera>().transform;
+        //playerLook.camParent = camSys.transform.parent.transform;
 
-        //camSys.GetComponent<PlayerSetup>().IsLocalCamera();
         _player.GetComponent<PlayerSetup>().IsLocalPlayer();
     }
 }

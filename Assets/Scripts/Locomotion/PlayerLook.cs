@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerLook : MonoBehaviour
 {
     [Header("Manually assigned variables")]
-    [SerializeField] public Transform camParent;
-    [SerializeField] private Transform fpCamTrans;
+
     [SerializeField] private Transform camFollowTrans;
     [SerializeField] private Transform dirParent;
     //[SerializeField] private Transform hipBone;
@@ -30,6 +29,11 @@ public class PlayerLook : MonoBehaviour
     private PlayerSetup playerSetup;
     private Climbing climbing;
     private WallRun wallrun;
+    private LobbyManager lobbyManager;
+
+    [Header("Assigned from LobbyManager")]
+    public Transform camParent;
+    public Transform fpCamTrans;
 
 
     void Start()
@@ -41,9 +45,11 @@ public class PlayerLook : MonoBehaviour
         //playHealth = FindAnyObjectByType<PlayerHealth>();
         climbing = this.GetComponent<Climbing>();
         wallrun = this.GetComponent<WallRun>();
-
-        fpCamTrans = playerSetup.cameraHolder.GetComponentInChildren<Camera>().transform;
-        camParent = playerSetup.cameraHolder.transform;
+        lobbyManager = FindAnyObjectByType<LobbyManager>();
+        lobbyManager.playerLook = this;
+        //playerSetup.playerLook = this;
+        fpCamTrans = lobbyManager.camSys.GetComponentInChildren<Camera>().transform;
+        camParent = lobbyManager.camSys.transform;
     }
 
     void Update()

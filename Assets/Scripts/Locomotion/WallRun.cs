@@ -55,7 +55,7 @@ public class WallRun : MonoBehaviour
         currentCamAng = defaultCamAng;
         playerMovement = GetComponent<PlayerMovement>();
         climbing = GetComponent<Climbing>();
-        fpCamTrans = playerSetup.cameraHolder.GetComponentInChildren<Camera>().transform;
+        fpCamTrans = playerSetup.fpCam.transform;
     }
 
     void Update()
@@ -74,7 +74,6 @@ public class WallRun : MonoBehaviour
 
         velY = playerRigidbody.velocity.y;
     }
-
 
     private void FixedUpdate()
     {

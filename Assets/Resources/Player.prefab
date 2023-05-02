@@ -135,11 +135,11 @@ MonoBehaviour:
   stopVel: {x: 0, y: 0, z: 0}
   currentStaminaValue: 0
   airTime: 0
-  fpsCam: {fileID: 0}
   camFollowTrans: {fileID: 4246790378372729989}
   dirParent: {fileID: 4246790378920866577}
   bottomFoot: {fileID: 4246790378625672767}
   topFoot: {fileID: 4246790378558945421}
+  fpCam: {fileID: 0}
   walkSpeed: 5
   runSpeed: 9
   crouchSpeed: 2
@@ -171,8 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bd5b6dece63cb47a19bc121872bc5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camParent: {fileID: 0}
-  fpCamTrans: {fileID: 0}
   camFollowTrans: {fileID: 4246790378372729989}
   dirParent: {fileID: 4246790378920866577}
   mouseSens: 100
@@ -181,6 +179,8 @@ MonoBehaviour:
   mouseY: 0
   xRotation: 0
   yRotation: 0
+  camParent: {fileID: 0}
+  fpCamTrans: {fileID: 0}
 --- !u!114 &4246790377430053777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4246790377430053791}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 
@@ -338,13 +338,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45555ebde36e6b4a9ad7459311a1e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
-  camFollow: {fileID: 0}
-  playerLook: {fileID: 0}
-  climbing: {fileID: 0}
-  wallRun: {fileID: 0}
-  cameraHolder: {fileID: 0}
+  playerMovement: {fileID: 4246790377430053779}
+  camFollow: {fileID: 6764382698752053667}
+  playerLook: {fileID: 4246790377430053776}
+  climbing: {fileID: 4246790377430053777}
+  wallRun: {fileID: 4246790377430053790}
+  fpCam: {fileID: 0}
   directionParent: {fileID: 4246790378920866590}
+  lobbyManager: {fileID: 0}
 --- !u!1 &4246790378262641512
 GameObject:
   m_ObjectHideFlags: 0

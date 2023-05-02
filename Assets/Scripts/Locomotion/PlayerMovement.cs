@@ -25,12 +25,14 @@ public class PlayerMovement : MonoBehaviour
     public float airTime;
 
     [Header("Manually assigned variables")]
-    [SerializeField] private Camera fpsCam;
     [SerializeField] private Transform camFollowTrans;
     [SerializeField] private Transform dirParent;
     //[SerializeField] private Animator anim;
     [SerializeField] private GameObject bottomFoot;
     [SerializeField] private GameObject topFoot;
+
+    //Assigned im LobbyManager
+    public Transform fpCam;
 
     //Assigned in start
     private Rigidbody playerRb;
@@ -41,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     private WallRun wallRun;
     private Climbing climb;
     private CapsuleCollider playerCol;
+    private LobbyManager lobbyManager;
 
     [Header("Editable in inspector")]
     [SerializeField] private float walkSpeed = 5f;
@@ -104,8 +107,10 @@ public class PlayerMovement : MonoBehaviour
         playerCol = this.GetComponent<CapsuleCollider>();
         //breathCheck = FindAnyObjectByType<BreathingCheck>();
         //anim = FindAnyObjectByType<AnimatorStates>().GetComponent<Animator>();
-        fpsCam = playerSetup.cameraHolder.GetComponentInChildren<Camera>();
-
+        lobbyManager = FindAnyObjectByType<LobbyManager>();
+        lobbyManager.playerMovement = this;
+        //playerSetup.playerMovement = this;
+        fpCam = lobbyManager.camSys.GetComponentInChildren<Camera>().transform;
         this.gameObject.GetComponent<Collider>().material.staticFriction = 100f;
 
         currentStaminaValue = 10f;
@@ -153,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirectionSliding = dirParent.right * horizontal + dirParent.forward * vertical;
         moveDirectionSlope = Vector3.ClampMagnitude(dirParent.right * horizontal + dirParent.forward * vertical, 1f);
         moveDirectionFlat = Vector3.ClampMagnitude(dirParent.right * horizontal + dirParent.forward * vertical, 1f);
-        moveDirectionSwimming = fpsCam.transform.right * horizontal + fpsCam.transform.forward * vertical;
+        moveDirectionSwimming = fpCam.transform.right * horizontal + fpCam.forward * vertical;
         moveDirectionLeftDiagonal = Vector3.ClampMagnitude(-dirParent.right + new Vector3(15f, 0, 0) * horizontal + dirParent.forward * vertical, 1f); //For use in the step climbing code, allows us to check for steps diagonally from the movement direction as well
         moveDirectionRightDiagonal = Vector3.ClampMagnitude(dirParent.right + new Vector3(15f, 0, 0) * horizontal + dirParent.forward * vertical, 1f); //same as above but to the right
 
