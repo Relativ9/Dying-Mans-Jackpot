@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Unity.VisualScripting;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
 
     public GameObject player;
-    public GameObject CameraSystem;
+    public GameObject cameraSystem;
     public Transform spawnPoint;
-    public PlayerSetup playerSetup;
     public WallRun wallrun;
-    public PlayerMovement playerMovement;
-    public PlayerLook playerLook;
 
     public GameObject camSys;
 
@@ -22,7 +20,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("Connecting....");
 
         PhotonNetwork.ConnectUsingSettings();
-        
+        //cameraSystem.gameObject.SetActive(false);
     }
 
 
@@ -48,13 +46,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         base.OnJoinedRoom();
         Debug.Log("Connected and in a room now!");
 
-        camSys = PhotonNetwork.Instantiate(CameraSystem.name, spawnPoint.position, Quaternion.identity);
+        camSys = PhotonNetwork.Instantiate(cameraSystem.name, spawnPoint.position, Quaternion.identity);
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
-        playerSetup.fpCam = camSys.GetComponentInChildren<Camera>().gameObject;
-        //playerMovement.fpCam = camSys.GetComponentInChildren<Camera>().transform;
-        //playerLook.fpCamTrans = camSys.GetComponentInChildren<Camera>().transform;
+        _player.GetComponent<PlayerSetup>().fpCam = camSys.GetComponentInChildren<Camera>().gameObject;
+        _player.GetComponent<PlayerMovement>().fpCam = camSys.GetComponentInChildren<Camera>().transform;
+        _player.GetComponent<PlayerLook>().fpCamTrans = camSys.GetComponentInChildren<Camera>().transform;
+        _player.GetComponent<CameraFollow>().camFollowTrans = _player.transform.Find("DirectionParent/Head");
+        _player.GetComponent<CameraFollow>().cameraHolder = camSys.transform;
         //playerLook.camParent = camSys.transform.parent.transform;
-
+        //camSys.gameObject.SetActive(true);
         _player.GetComponent<PlayerSetup>().IsLocalPlayer();
     }
 }

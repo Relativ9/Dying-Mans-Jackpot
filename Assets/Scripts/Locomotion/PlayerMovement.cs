@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         //breathCheck = FindAnyObjectByType<BreathingCheck>();
         //anim = FindAnyObjectByType<AnimatorStates>().GetComponent<Animator>();
         lobbyManager = FindAnyObjectByType<LobbyManager>();
-        lobbyManager.playerMovement = this;
+        //lobbyManager.playerMovement = this;
         //playerSetup.playerMovement = this;
         fpCam = lobbyManager.camSys.GetComponentInChildren<Camera>().transform;
         this.gameObject.GetComponent<Collider>().material.staticFriction = 100f;

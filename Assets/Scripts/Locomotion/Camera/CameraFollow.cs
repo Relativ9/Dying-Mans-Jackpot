@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [Header("Manually assigned variables")]
-    [SerializeField] private Transform camFollowTrans;
+    [Header("Assigned by LobbyManager")]
+    public Transform camFollowTrans;
+    public Transform cameraHolder;
+    //private LobbyManager lobbyManager;
 
     //[SerializeField] private Transform deathCamPos;
     //[SerializeField] private Transform fpCamTrans;
 
 
-    private Transform cameraHolder;
 
 
-[Header("Editable in inspector")]
+
+    [Header("Editable in inspector")]
     [SerializeField] float multiplier = 10f;
     [SerializeField] float deathCamSmooth = 0.1f;
 
@@ -23,7 +25,9 @@ public class CameraFollow : MonoBehaviour
     {
         //playHealth = FindFirstObjectByType<PlayerHealth>();
         //fpCamTrans = Camera.main.transform;
-        cameraHolder = Camera.main.GetComponentInParent<Transform>();
+        //cameraHolder = Camera.main.GetComponentInParent<Transform>();
+        //lobbyManager = FindObjectOfType<LobbyManager>();
+        //cameraHolder = lobbyManager.camSys.transform;
     }
 
     void Update()
@@ -35,7 +39,10 @@ public class CameraFollow : MonoBehaviour
         //} else
         //{
         //Time.timeScale = 1f;
-        cameraHolder.position = Vector3.Slerp(transform.position, camFollowTrans.position, multiplier); //camera smoothly follows the player from set position, usually within childed to the head bone (when in first person).
+        if(cameraHolder != null)
+        {
+            cameraHolder.position = Vector3.Slerp(transform.position, camFollowTrans.position, multiplier); //camera smoothly follows the player from set position, usually within childed to the head bone (when in first person).
+        }
         //}
     }
 }

@@ -46,7 +46,7 @@ public class PlayerLook : MonoBehaviour
         climbing = this.GetComponent<Climbing>();
         wallrun = this.GetComponent<WallRun>();
         lobbyManager = FindAnyObjectByType<LobbyManager>();
-        lobbyManager.playerLook = this;
+        //lobbyManager.playerLook = this;
         //playerSetup.playerLook = this;
         fpCamTrans = lobbyManager.camSys.GetComponentInChildren<Camera>().transform;
         camParent = lobbyManager.camSys.transform;
