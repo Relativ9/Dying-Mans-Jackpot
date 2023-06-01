@@ -11,6 +11,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public GameObject cameraSystem;
     public Transform spawnPoint;
     public WallRun wallrun;
+    private PhotonView photonView;
 
     public GameObject camSys;
 
@@ -45,9 +46,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         Debug.Log("Connected and in a room now!");
-
         camSys = PhotonNetwork.Instantiate(cameraSystem.name, spawnPoint.position, Quaternion.identity);
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
+        photonView = _player.GetComponent<PhotonView>();
         _player.GetComponent<PlayerSetup>().fpCam = camSys.GetComponentInChildren<Camera>().gameObject;
         _player.GetComponent<PlayerMovement>().fpCam = camSys.GetComponentInChildren<Camera>().transform;
         _player.GetComponent<PlayerLook>().fpCamTrans = camSys.GetComponentInChildren<Camera>().transform;
@@ -55,7 +56,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         _player.GetComponent<CameraFollow>().cameraHolder = camSys.transform;
         //playerLook.camParent = camSys.transform.parent.transform;
         //camSys.gameObject.SetActive(true);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+
+        if(photonView.IsMine)
+        {
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
     }
 }
 

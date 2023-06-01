@@ -536,10 +536,7 @@ MonoBehaviour:
   player: {fileID: 4246790377430053791, guid: 00e09f1b8db241c46a1c89d50131fad0, type: 3}
   cameraSystem: {fileID: 413279511720884841, guid: 0d95ac9611f3644498c761e0be24ed53, type: 3}
   spawnPoint: {fileID: 1619015683}
-  playerSetup: {fileID: -587107939330038485, guid: 00e09f1b8db241c46a1c89d50131fad0, type: 3}
   wallrun: {fileID: 4246790377430053790, guid: 00e09f1b8db241c46a1c89d50131fad0, type: 3}
-  playerMovement: {fileID: 4246790377430053779, guid: 00e09f1b8db241c46a1c89d50131fad0, type: 3}
-  playerLook: {fileID: 4246790377430053776, guid: 00e09f1b8db241c46a1c89d50131fad0, type: 3}
   camSys: {fileID: 0}
 --- !u!1 &1171483166
 GameObject:

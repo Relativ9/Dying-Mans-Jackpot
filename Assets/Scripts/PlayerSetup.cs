@@ -28,24 +28,31 @@ public class PlayerSetup : MonoBehaviour
 
     public void IsLocalPlayer() 
     {
-        if (photonView.IsMine)
-        {
-            fpCam.SetActive(true);
-            playerMovement.enabled = true;
-            playerLook.enabled = true;
-            camFollow.enabled = true;
-            climbing.enabled = true;
-            wallRun.enabled = true;
-        }
-        else
-        {
-            fpCam.SetActive(false);
-            playerMovement.enabled = false;
-            playerLook.enabled = false;
-            camFollow.enabled = false;
-            climbing.enabled = false;
-            wallRun.enabled = false;
-        }
+        //if (photonView.IsMine)
+        //{
+        //    fpCam.SetActive(true);
+        //    playerMovement.enabled = true;
+        //    playerLook.enabled = true;
+        //    camFollow.enabled = true;
+        //    climbing.enabled = true;
+        //    wallRun.enabled = true;
+        //}
+        //else
+        //{
+        //    fpCam.SetActive(false);
+        //    playerMovement.enabled = false;
+        //    playerLook.enabled = false;
+        //    camFollow.enabled = false;
+        //    climbing.enabled = false;
+        //    wallRun.enabled = false;
+        //}
+        fpCam.SetActive(true);
+        playerMovement.enabled = true;
+        playerLook.enabled = true;
+        camFollow.enabled = true;
+        climbing.enabled = true;
+        wallRun.enabled = true;
+
     }
 
 }
